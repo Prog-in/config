@@ -1,0 +1,90 @@
+" source vim-plug
+if filereadable(expand('~/.config/nvim/autoload/plug.vim'))
+    source ~/.config/nvim/autoload/plug.vim
+endif
+
+" source plug configs
+if filereadable(expand('~/.config/nvim/plugins.vim'))
+    source ~/.config/nvim/plugins.vim
+endif
+
+" source bindings configs
+if filereadable(expand('~/.config/nvim/bindings.vim'))
+    source ~/.config/nvim/bindings.vim
+endif
+
+" set $NVIM_FOLDER/lua/plugins.lua to lua
+lua require('plugins')
+
+" --- general ---
+set nocompatible                    " desabilita modo de compatibilidade: pode ser mais modificado
+filetype indent on
+filetype plugin indent on           " enable detection, plugins and indent 
+set clipboard=unnamedplus           " using system clipboard
+set encoding=utf-8
+set showcmd                         " show partial command in status line. 
+syntax on                           " syntax highlighting
+"set number                         " exibe o numero da linha do codigo na esquerda
+set relativenumber                  " exibe o numero da linha atual e os numeros relativos das outras
+set backspace=indent,eol,start      " allow backspace over everything
+set wildmenu
+set wildmode=list:longest,list:full " costumize Vim tab-completion at the command prompt
+set pastetoggle=<leader>p           " paste mode: avoid auto indent, treat chars
+                                    "   as literal.
+"set spell                         " enable spell check (may need to download language package)
+set mouse=a                         " enable mouse click
+
+colorscheme gruvbox
+
+" vim hardcodes background color erase even if the terminfo file does
+" not contain bce (not to mention that libvte based terminals
+" incorrectly contain bce in their terminfo files). This causes
+" incorrect background rendering when using a color theme with a
+" background color.
+let &t_ut=''
+
+" --- searching ---
+set hlsearch                        " highlight das pesquisas
+set incsearch                       " incremental serching 
+set ignorecase                      " case insensitive matching
+set smartcase                       " smart case matching
+set showmatch                       " show matching 
+
+" --- indentation and text-wrap ---
+set expandtab                       " Expand tabs to spaces
+set autoindent smartindent          " auto/smart indent
+set copyindent                      " copy previous indentation on auto indent
+set softtabstop=4                   " Tab key results in # spaces
+set tabstop=4                       " Tab is # spaces
+set shiftwidth=4                    " The # of spaces for indenting.
+set smarttab                        " At start of line, <Tab> inserts shift width
+                                    "  spaces, <Bs> deletes shift width spaces.
+
+set wrap                            " wrap lines
+set textwidth=80
+set cc=80                           " set an 80 column border for good coding style
+"set colorcolumn=+1                 " Show large lines
+set formatoptions=qrn1              " automatic formating.
+set formatoptions-=o                " don't start new lines w/ comment leader on
+                                    "   pressing 'o'
+set nomodeline                      " don't use modeline -security-
+set cursorline                      " highlight current cursorline
+set ttyfast                         " Speed up scrolling in Vim
+
+" --- performance / buffer ---
+set hidden                  " can put buffer to the background without writing
+                            "   to disk, will remember history/marks.
+set lazyredraw              " don't update the display while executing macros
+set ttyfast                 " Send more characters at a given time.
+
+" --- history / file handling ---
+set history=999             " Increase history -default = 20-
+set undolevels=999          " Moar undo -default=100-
+set autoread                " reload files if changed externally
+
+" --- backup and swap files ---
+"set nobackup
+"set nowritebackup
+"set noswapfile                    " disable creating swap file
+"set backupdir=~/.cache/vim        " Directory to store backup files.
+

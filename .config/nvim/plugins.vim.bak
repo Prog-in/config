@@ -1,0 +1,27 @@
+call plug#begin()
+" nvim-tree
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-tree/nvim-tree.lua'
+
+" gruvbox
+Plug 'gruvbox-community/gruvbox'
+
+"vim-fugitive
+Plug 'tpope/vim-fugitive'
+
+" treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" vim-matchup
+Plug 'andymass/vim-matchup'
+
+" nvim-lspconfig e mason
+Plug 'williamboman/mason.nvim', {'do': ':MasonUpdate'}
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'glepnir/lspsaga.nvim', {'branch': 'main'}
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'onsails/lspkind.nvim'
+
+call plug#end()
+
