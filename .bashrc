@@ -2,8 +2,8 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# adicionar nvim ao PATH
-export PATH="$PATH:/home/joao/.local/share/bob/nvim-bin"
+# spelling correction
+shopt -s cdspell
 
 # If not running interactively, don't do anything
 case $- in
@@ -36,11 +36,13 @@ shopt -s checkwinsize
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
+    #xterm-color|*-256color|xterm-kitty) color_prompt=yes;;
 fi
-
+:
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color|xterm-kitty) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
+    #xterm-color|*-256color|xterm-kitty) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -79,8 +81,8 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -89,7 +91,6 @@ fi
 
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -105,8 +106,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f ~/.aliases ]; then
+    . ~/.aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -120,35 +121,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#Pyenv start
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-export PATH="$PATH:PYENV_ROOT/bin"
-eval "$(pyenv init -)"
-
-# Cargo
+# cargo 
 . "$HOME/.cargo/env"
-
-# default editor
-export EDITOR='/home/joao/.local/share/bob/nvim-bin/nvim'
-
-# This loads nvm bash_completion
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-# Tmux color variable
-#export TERM=xterm-256color
-
-# Auto use tmux
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux new-session -A -s main 
-fi
 
 # powerline
 if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
   source /usr/share/powerline/bindings/bash/powerline.sh
 fi
 
-
-[ -f "/home/joao/.ghcup/env" ] && source "/home/joao/.ghcup/env" # ghcup-env
+export QSYS_ROOTDIR="/home/joao/intelFPGA_lite/22.1std/quartus/sopc_builder/bin"
